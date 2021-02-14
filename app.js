@@ -2,13 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+//import routes
+const userRoutes = require("./routes/user");
+const productRoutes = require("./routes/product");
+const categoryRoutes = require("./routes/category");
+
 // app
-
 const app = express();
-
-app.get("/", (req, res) => {
-	res.send("hello from amreen");
-});
 
 // db
 mongoose
@@ -23,6 +23,10 @@ mongoose
 	.catch((e) => {
 		console.log(e);
 	});
+
+// routes middleware
+
+app.use("/api", userRoutes);
 
 const port = process.env.PORT || 8000;
 
